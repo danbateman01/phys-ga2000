@@ -1,0 +1,12 @@
+import numpy as np
+import math
+
+
+def f(x):
+  f = x*(x-1)
+  return f
+def df(x, d):
+  return ((f(x+d)-f(x))/d)
+
+for i in [10e-4,10e-6,10e-8,10e-10,10e-12,10e-14]:
+    print(df(1,i))
