@@ -7,12 +7,6 @@ hdu_list = fits.open('specgrid.fits')
 logwave = hdu_list['LOGWAVE'].data
 flux = hdu_list['FLUX'].data
 
-fn = 0
-def fignum():
-    global fn
-    fn +=1
-    return fn
-
 #A
 for i in range(0,5):
     plt.plot(logwave, flux[i, :], label="Galaxy {galaxyindex}".format(galaxyindex = i))
@@ -159,4 +153,4 @@ plt.ylabel(r'Flux [$10^{-17}$ \mathrm{erg} s$^{-1}$ cm$^{-2}$ $\AA^{-1}$]^2')
 plt.title('Squared Fractional Residuals vs. Nc')
 plt.grid(True)
 plt.show()
-print('Squared Fractional Error for Nc = 20: {squared_residuals[-1]:.6f}')
+print('Squared Fractional Error for Nc = 20: {residuals[-1]:.6f}')
