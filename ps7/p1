@@ -1,0 +1,23 @@
+from jax import grad
+
+def f(r, m):
+    return m/((1-r)**2) + r - 1/(r**2)
+df = grad(f)
+tolerance = 0.1
+def newton(r, m):
+    if abs(f(r, m)) < tolerance:
+        return r
+    else:
+        return newton(r - f(r, m)/df(r, m),m)
+
+sun = 1.989*10**30 
+earth = 5.972*10**24
+moon = 7.348*10**22
+jupiter = 1.898*10**27 
+earthmoon = 3.844*10**8
+earthsun= 149.60 * 10**9
+
+LEM = earthmoon * newton (0.1, moon/earth)
+LES = earthsun * newton (0.1, earth/sun)
+LJS = earthsun * newton (0.1, jupiter/sun)
+print(LEM, LES, LJS)
